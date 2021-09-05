@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ResearchTabDef>
+		<defName>WFFT_ResearchTab</defName>
+		<label>Fish Traps</label>
+	</ResearchTabDef>
+  
+  	<ResearchProjectDef>
+		<defName>WFFT_FishTrap</defName>
+		<label>Fish trap</label>
+		<description>Research fish trap which helps catch small fish.</description>
+		<baseCost>300</baseCost>
+		<techLevel>Neolithic</techLevel>
+		<researchViewX>0</researchViewX>
+		<researchViewY>1</researchViewY>
+		<tab>WFFT_ResearchTab</tab>
+	</ResearchProjectDef>
+  
+    <ResearchProjectDef>
+		<defName>WFFT_FishNet</defName>
+		<label>Fish net</label>
+		<description>Improve traps into nets. Nets catch small and medium fish.</description>
+		<baseCost>600</baseCost>
+		<techLevel>Neolithic</techLevel>
+		<researchViewX>1</researchViewX>
+		<researchViewY>1</researchViewY>
+        <tab>WFFT_ResearchTab</tab>
+        <prerequisites>
+            <li>WFFT_FishTrap</li>
+        </prerequisites>
+	</ResearchProjectDef>
+</Defs>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<WFFT_NeedsWater>Fish traps and nets must be built on water</WFFT_NeedsWater>
+	<WFFT_NeedsDistance>Fish traps and nets must be built with at least 10 tiles of separation of each other</WFFT_NeedsDistance>
+</LanguageData>
