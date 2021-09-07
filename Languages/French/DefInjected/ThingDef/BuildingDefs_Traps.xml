@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Fish net -->
+  <WFFT_FishNet.label>Filet de pêche</WFFT_FishNet.label>
+  <!-- EN: Passively catch small and medium fishes. Must be placed on water. -->
+  <WFFT_FishNet.description>Capture passive de petits et moyens poissons. Doit être placé sur l'eau.</WFFT_FishNet.description>
+  
+  <!-- EN: Fish trap -->
+  <WFFT_FishTrap.label>Piège à poisson</WFFT_FishTrap.label>
+  <!-- EN: Passively catch small fishes. Must be placed on water. -->
+  <WFFT_FishTrap.description>Attrapez passivement de petits poissons. Doit être placé sur l'eau.</WFFT_FishTrap.description>
+  
+</LanguageData>

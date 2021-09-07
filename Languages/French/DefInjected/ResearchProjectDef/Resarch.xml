@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Fish net -->
+  <WFFT_FishNet.label>Filet de pêche</WFFT_FishNet.label>
+  <!-- EN: Improve traps into nets. Nets catch small and medium fish. -->
+  <WFFT_FishNet.description>Améliorez les pièges en filets. Les filets capturent les petits et moyens poissons.</WFFT_FishNet.description>
+  
+  <!-- EN: Fish trap -->
+  <WFFT_FishTrap.label>Piège à poisson</WFFT_FishTrap.label>
+  <!-- EN: Research fish trap which helps catch small fish. -->
+  <WFFT_FishTrap.description>Faites des recherches sur les pièges à poissons qui aident à attraper les petits poissons.</WFFT_FishTrap.description>
+  
+</LanguageData>

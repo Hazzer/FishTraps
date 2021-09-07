@@ -16,7 +16,8 @@ namespace FishTraps
             {
                 BiomeRepo.Init();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.Error($"Exception during init: {e}");
             }
