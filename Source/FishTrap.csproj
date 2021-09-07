@@ -62,14 +62,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FishGeneratorComp\BiomeRepo.cs" />
+    <Compile Include="FishGeneratorComp\FishyBuildings.cs" />
     <Compile Include="FishGeneratorComp\FishyChecker.cs" />
     <Compile Include="FishGeneratorComp\FishyCompProperties.cs" />
     <Compile Include="FishGeneratorComp\FishyItemSpawnerComp.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Options\FishTrapsMod.cs" />
+    <Compile Include="Options\FishTrapsModSettings.cs" />
     <Compile Include="Placeworker\PlaceWorker_FishTraps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\MakeRelease.bat">
+      <Link>MakeRelease.bat</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

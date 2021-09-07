@@ -16,7 +16,7 @@ namespace FishTraps
                     return checkedSize != FishSizeCategory.Special;
                 case FishSizeCategory.Special:
                     return false;
-                    
+
             }
             return false;
         }

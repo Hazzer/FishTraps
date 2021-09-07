@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<!-- EN: Fish traps and nets must be built on water -->
+  <WFFT_NeedsWater>Les pièges à poissons et les filets doivent être construits sur l'eau</WFFT_NeedsWater>
+	<!-- EN: Fish traps and nets must be built with at least 10 tiles of separation of each other -->
+  <WFFT_NeedsDistance>Les pièges à poissons et les filets doivent être construits avec au moins 10 cases d'écart les uns des autres.</WFFT_NeedsDistance>
+</LanguageData>
