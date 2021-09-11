@@ -24,7 +24,7 @@
         <graphicData>
             <texPath>fishTrap</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-	    <shaderType>CutoutComplex</shaderType>
+            <shaderType>CutoutComplex</shaderType>
             <drawSize>(1,1)</drawSize>
             <damageData>
                 <enabled>false</enabled>
@@ -80,7 +80,7 @@
         <graphicData>
             <texPath>fishNet</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-	    <shaderType>CutoutComplex</shaderType>
+            <shaderType>CutoutComplex</shaderType>
             <drawSize>(3,3)</drawSize>
             <damageData>
                 <enabled>false</enabled>
