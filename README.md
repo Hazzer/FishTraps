@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/aH4br7E.png" alt="Fish Traps" />
+  <img src="https://github.com/Hazzer/FishTraps/blob/master/About/Preview.png" alt="Fish Traps" />
 </p>
 <p align="center">
     Rimworld mod, add-on for Vanilla Fishing Expanded
