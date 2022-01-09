@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
     <WFFT_ModName>Fish Traps</WFFT_ModName>
-	<WFFT_NeedsWater>Fish traps and nets must be built on water</WFFT_NeedsWater>
-	<WFFT_NeedsDistance>Fish traps and nets must be built with at least 10 tiles of separation of each other</WFFT_NeedsDistance>
-      
-    
+    <WFFT_NeedsWater>Fish traps and nets must be built on water</WFFT_NeedsWater>
+    <WFFT_NeedsDistance>Fish traps and nets must be built with at least 10 tiles of separation of each other</WFFT_NeedsDistance>
+
+
     <!--Options -->
     <WFFT_FishTrap>Fish trap</WFFT_FishTrap>
     <WFFT_FishNet>Fish net</WFFT_FishNet>
-    <WFFT_SpawnInterval>Spawn interval: </WFFT_SpawnInterval>
-    <WFFT_SpawnIntervalToolTip>Value in ticks, 60000 ticks is equal to one day in game</WFFT_SpawnIntervalToolTip>
-    <WFFT_DmgInterval>Mean time between trap receiving damage: </WFFT_DmgInterval>
-    <WFFT_DmgIntervalToolTip>Higher value means longer time between damage</WFFT_DmgIntervalToolTip>
+    <WFFT_SpawnInterval>Spawn fish every {0} hour(s) ({1} ticks): </WFFT_SpawnInterval>
+    <WFFT_SpawnIntervalToolTip>In game hours.</WFFT_SpawnIntervalToolTip>
+    <WFFT_DmgInterval>Trap may receive damage after {0} hour(s) ({1} ticks): </WFFT_DmgInterval>
+    <WFFT_DmgIntervalToolTip>Higher value means longer time between damage. In game hours.</WFFT_DmgIntervalToolTip>
     <WFFT_Default>Default</WFFT_Default>
+    <WFFT_BuildRadius>Build radius: {0} cells</WFFT_BuildRadius>
+    <WFFT_AutoRebuild>Auto trap rebuild</WFFT_AutoRebuild>
+    <WFFT_AutoRebuildDesc>Place new blueprints after trap is destroyed</WFFT_AutoRebuildDesc>
+    <WFFT_AllowSpawn>Catch fish</WFFT_AllowSpawn>
+    <WFFT_AllowSpawnDesc>When disabled trap will not spawn fish or receving damage over time</WFFT_AllowSpawnDesc>
+    <WFFT_Disabled>Disabled</WFFT_Disabled>
 </LanguageData>

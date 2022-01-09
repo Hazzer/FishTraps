@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Fish net -->
+  <WFFT_FishNet.label>Fischnetz</WFFT_FishNet.label>
+  <!-- EN: Passively catch small and medium fishes. Must be placed on water. -->
+  <WFFT_FishNet.description>Passiver Fang von kleinen und mittelgroßen Fischen. Muss auf dem Wasser platziert werden.</WFFT_FishNet.description>
+  
+  <!-- EN: Fish trap -->
+  <WFFT_FishTrap.label>Reuse</WFFT_FishTrap.label>
+  <!-- EN: Passively catch small fishes. Must be placed on water. -->
+  <WFFT_FishTrap.description>Fängt passiv kleine Fische. Muss auf dem Wasser platziert werden.</WFFT_FishTrap.description>
+  
+</LanguageData>

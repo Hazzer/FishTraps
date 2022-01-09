@@ -19,7 +19,7 @@
     <ResearchProjectDef>
 		<defName>WFFT_FishNet</defName>
 		<label>Fish net</label>
-		<description>Improve traps into nets. Nets catch small and medium fish.</description>
+		<description>Improve traps into nets. Nets catch all kind of fish.</description>
 		<baseCost>600</baseCost>
 		<techLevel>Neolithic</techLevel>
 		<researchViewX>1</researchViewX>

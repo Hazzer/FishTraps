@@ -12,6 +12,8 @@ namespace FishTraps
     class FishyItemSpawnerComp : ThingComp
     {
         private int ticksPassed;
+        private bool disabled;
+        private OverlayHandle? overlayHandle;
 
         private FishyCompProperties Props => (FishyCompProperties)base.props;
 
@@ -40,9 +42,9 @@ namespace FishTraps
                 switch (Props.buildingType)
                 {
                     case FishyBuildings.Trap:
-                        return FishTrapsModSettings.trapSpawnInterval;
+                        return FishTrapsModSettings.TrapSpawnIntervalInTicks;
                     case FishyBuildings.Net:
-                        return FishTrapsModSettings.netSpawnInterval;
+                        return FishTrapsModSettings.NetSpawnIntervalInTicks;
                     default:
                         return Props.spawnInterval;
                 }
@@ -56,11 +58,45 @@ namespace FishTraps
                 switch (Props.buildingType)
                 {
                     case FishyBuildings.Trap:
-                        return FishTrapsModSettings.trapDmgInterval;
+                        return FishTrapsModSettings.TrapDmgIntervalInTicks;
                     case FishyBuildings.Net:
-                        return FishTrapsModSettings.netDmgInterval;
+                        return FishTrapsModSettings.NetDmgIntervalInTicks;
                     default:
                         return Props.dmgInterval;
+                }
+            }
+        }
+
+        private bool CanRebuild
+        {
+            get
+            {
+                return FishTrapsModSettings.autoReplaceAfterDestroyed &&
+                    parent.Faction == Faction.OfPlayer && parent.def.blueprintDef != null && parent.def.IsResearchFinished;
+            }
+        }
+
+        private OverlayTypes MyOverlayType
+        {
+            get
+            {
+
+                if (parent.def.size.x > 1 || parent.def.size.z > 1)
+                {
+                    return OverlayTypes.ForbiddenBig;
+                }
+                return OverlayTypes.Forbidden;
+            }
+        }
+
+        private void UpdateOverlayHandle()
+        {
+            if (parent.Spawned)
+            {
+                parent.Map.overlayDrawer.Disable(parent, ref overlayHandle);
+                if (parent.Spawned && disabled)
+                {
+                    overlayHandle = parent.Map.overlayDrawer.Enable(parent, MyOverlayType);
                 }
             }
         }
@@ -91,10 +127,28 @@ namespace FishTraps
                     }
                 }
             }
+            UpdateOverlayHandle();
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
+            Command_Toggle forbidToggle = new Command_Toggle
+            {
+                defaultLabel = "WFFT_AllowSpawn".Translate(),
+                defaultDesc = "WFFT_AllowSpawnDesc".Translate(),
+                icon = TexCommand.ForbidOff,
+                isActive = () => !disabled,
+                toggleAction = delegate
+                {
+                    disabled = !disabled;
+                    UpdateOverlayHandle();
+                    if (disabled)
+                    {
+                        ticksPassed = 0;
+                    }
+                }
+            };
+            yield return forbidToggle;
             if (Prefs.DevMode)
             {
                 Command_Action command_Action = new Command_Action
@@ -112,8 +166,7 @@ namespace FishTraps
                     defaultLabel = "DEV: damage trap",
                     action = delegate
                     {
-                        float trapDamage = Rand.Range(0f, Props.intervalDmgTreshhold);
-                        parent.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, parent.HitPoints * trapDamage));
+                        DoDamage(Props.intervalDmgTreshhold);
                     }
                 };
                 yield return damageTrap;
@@ -123,25 +176,45 @@ namespace FishTraps
 
         public override void CompTickRare()
         {
-
+            if (disabled)
+            {
+                return;
+            }
             ticksPassed += 250;
             if (ticksPassed >= SpawnInterval)
             {
                 SpawnItems();
                 ticksPassed -= SpawnInterval;
-                float trapDamage = Rand.Range(0f, Props.fishedDmgThreshhold);
-                parent.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, parent.HitPoints * trapDamage));
+                DoDamage(Props.fishedDmgThreshhold);
 
             }
             else if (Rand.MTBEventOccurs(DmgInterval, 60000, 30000))
             {
-                float trapDamage = Rand.Range(0f, Props.intervalDmgTreshhold);
-                parent.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, parent.HitPoints * trapDamage));
+                DoDamage(Props.intervalDmgTreshhold);
             }
         }
+
+        private void DoDamage(float threshhold)
+        {
+            float trapDamage = Rand.Range(0f, threshhold);
+            float dmgDone = Math.Max(1f, parent.HitPoints * trapDamage);
+            parent.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, dmgDone));
+        }
+
+        public override void PostDestroy(DestroyMode mode, Map previousMap)
+        {
+            if (mode == DestroyMode.KillFinalize)
+            {
+                if (!this.CanRebuild || previousMap == null || !GenConstruct.CanPlaceBlueprintAt((BuildableDef)parent.def, parent.Position, parent.Rotation, previousMap, false, (Thing)null, (Thing)null, parent.Stuff).Accepted)
+                    return;
+                GenConstruct.PlaceBlueprintForBuild_NewTemp((BuildableDef)parent.def, parent.Position, previousMap, parent.Rotation, Faction.OfPlayer, parent.Stuff, (Precept_ThingStyle)null, (ThingStyleDef)null);
+            }
+        }
+
         public override void PostExposeData()
         {
-            Scribe_Values.Look(ref ticksPassed, "ticksPassed", 0);
+            Scribe_Values.Look<int>(ref ticksPassed, "ticksPassed", 0);
+            Scribe_Values.Look<bool>(ref disabled, "trapDisabled", false);
         }
 
         private void SpawnItems()
@@ -171,7 +244,9 @@ namespace FishTraps
 
         public override string CompInspectStringExtra()
         {
-            return "NextSpawnedResourceIn".Translate() + ": " + (SpawnInterval - ticksPassed).ToStringTicksToPeriod();
+            return disabled ?
+                "WFFT_Disabled".Translate() :
+                ("NextSpawnedResourceIn".Translate() + ": " + (SpawnInterval - ticksPassed).ToStringTicksToPeriod());
 
         }
     }

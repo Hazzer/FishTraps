@@ -42,8 +42,14 @@
             <WorkToBuild>1000</WorkToBuild>
             <Flammability>1.0</Flammability>
             <Beauty>-1</Beauty>
+            <Mass>10</Mass>
+            <MarketValue>60</MarketValue>
         </statBases>
         <tickerType>Rare</tickerType>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsProduction</li>
+        </thingCategories>
         <size>(1,1)</size>
         <pathCost>30</pathCost>
         <stuffCategories>
@@ -75,7 +81,7 @@
     <ThingDef ParentName="WFFT_BaseBuilding">
         <defName>WFFT_FishNet</defName>
         <label>fish net</label>
-        <description>Passively catch small and medium fishes. Must be placed on water.</description>
+        <description>Passively catch all kinds of fish. Must be placed on water.</description>
         <thingClass>Building</thingClass>
         <graphicData>
             <texPath>fishNet</texPath>
@@ -98,8 +104,14 @@
             <WorkToBuild>2000</WorkToBuild>
             <Flammability>1.0</Flammability>
             <Beauty>-1</Beauty>
+            <Mass>10</Mass>
+            <MarketValue>100</MarketValue>
         </statBases>
         <tickerType>Rare</tickerType>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsProduction</li>
+        </thingCategories>
         <size>(3,3)</size>
         <pathCost>30</pathCost>
         <stuffCategories>
@@ -113,7 +125,7 @@
         <comps>
             <li Class="FishTraps.FishyCompProperties">
                 <compClass>FishTraps.FishyItemSpawnerComp</compClass>
-                <fishSizeCategory>Medium</fishSizeCategory>
+                <fishSizeCategory>Large</fishSizeCategory>
                 <buildingType>Net</buildingType>
             </li>
         </comps>

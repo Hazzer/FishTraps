@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <WFFT_ModName>Reusen</WFFT_ModName>
+    <WFFT_NeedsWater>Fischreusen und Netze müssen auf dem Wasser gebaut werden</WFFT_NeedsWater>
+    <WFFT_NeedsDistance>Fischreusen und Netze müssen mit einem Mindestabstand von 10 Feldern zueinander gebaut werden.</WFFT_NeedsDistance>
+
+
+    <!--Options -->
+    <WFFT_FishTrap>Reuse</WFFT_FishTrap>
+    <WFFT_FishNet>Fischnetz</WFFT_FishNet>
+    <WFFT_SpawnInterval>Spawn fish every {0} hour(s) ({1} ticks): </WFFT_SpawnInterval>
+    <WFFT_SpawnIntervalToolTip>Stunden im Spiel.</WFFT_SpawnIntervalToolTip>
+    <WFFT_DmgInterval>Falle kann Schaden nehmen nach {0} stunde(n) ({1} ticks): </WFFT_DmgInterval>
+    <WFFT_DmgIntervalToolTip>Ein höherer Wert bedeutet eine größere Zeitspanne zwischen den Beschädigungen. Stunden im Spiel.</WFFT_DmgIntervalToolTip>
+    <WFFT_Default>Standard</WFFT_Default>
+    <WFFT_BuildRadius>Bauradius: {0} Felder</WFFT_BuildRadius>
+    <WFFT_AutoRebuild>Automatischer Neubau</WFFT_AutoRebuild>
+    <WFFT_AutoRebuildDesc>Neue Blaupausen platzieren, nachdem die Falle zerstört wurde</WFFT_AutoRebuildDesc>
+    <WFFT_AllowSpawn>Fisch fangen</WFFT_AllowSpawn>
+    <WFFT_AllowSpawnDesc>Wenn die Falle deaktiviert ist, laicht sie nicht und nimmt mit der Zeit Schaden</WFFT_AllowSpawnDesc>
+    <WFFT_Disabled>Deaktiviert</WFFT_Disabled>
+</LanguageData>

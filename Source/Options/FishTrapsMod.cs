@@ -15,6 +15,12 @@ namespace FishTraps.Options
         private const string DMG_INTERVAL = "WFFT_DmgInterval";
         private const string DMG_TOOLTIP = "WFFT_DmgIntervalToolTip";
         private const string DEFAULT = "WFFT_Default";
+        private const string BUILD_RADIUS = "WFFT_BuildRadius";
+        private const string FISH_TRAP = "WFFT_FishTrap";
+        private const string AUTO_REBUILD = "WFFT_AutoRebuild";
+        private const string AUTO_REBUILD_TOOLTIP = "WFFT_AutoRebuildDesc";
+        private const string FISH_NET = "WFFT_FishNet";
+        private const string MOD_NAME = "WFFT_ModName";
 
         public FishTrapsMod(ModContentPack content) : base(content)
         {
@@ -27,41 +33,48 @@ namespace FishTraps.Options
             listingStandard.Begin(inRect);
             listingStandard.Gap(12f);
 
-            listingStandard.Label("WFFT_FishTrap".Translate());
+            listingStandard.Label(FISH_TRAP.Translate());
             listingStandard.Gap(12f);
-            listingStandard.Label(SPAWN_INTERVAL.Translate() + FishTrapsModSettings.trapSpawnInterval, tooltip: SPAWN_TOOLTIP.Translate());
-            FishTrapsModSettings.trapSpawnInterval = (int)listingStandard.Slider(FishTrapsModSettings.trapSpawnInterval, 10000f, 60000 * 5f);
-            listingStandard.Label(DMG_INTERVAL.Translate() + FishTrapsModSettings.trapDmgInterval, tooltip: DMG_TOOLTIP.Translate() );
-            FishTrapsModSettings.trapDmgInterval = (int)listingStandard.Slider(FishTrapsModSettings.trapDmgInterval, 1000f, 60000f);
+            listingStandard.Label(SPAWN_INTERVAL.Translate(FishTrapsModSettings.trapSpawnInterval, FishTrapsModSettings.TrapSpawnIntervalInTicks), tooltip: SPAWN_TOOLTIP.Translate());
+            FishTrapsModSettings.trapSpawnInterval = (int)listingStandard.Slider(FishTrapsModSettings.trapSpawnInterval, 1, 24 * 5);
+            listingStandard.Label(DMG_INTERVAL.Translate(FishTrapsModSettings.trapDmgInterval, FishTrapsModSettings.TrapDmgIntervalInTicks), tooltip: DMG_TOOLTIP.Translate() );
+            FishTrapsModSettings.trapDmgInterval = (int)listingStandard.Slider(FishTrapsModSettings.trapDmgInterval, 1, 24);
 
             if (listingStandard.ButtonText(DEFAULT.Translate()))
             {
-                FishTrapsModSettings.trapSpawnInterval = 90000;
-                FishTrapsModSettings.trapDmgInterval = 30000;
+                FishTrapsModSettings.trapSpawnInterval = 36;
+                FishTrapsModSettings.trapDmgInterval = 12;
             };
             listingStandard.Gap(12f);
 
-            listingStandard.Label("WFFT_FishNet".Translate());
+            listingStandard.Label(FISH_NET.Translate());
             listingStandard.Gap(12f);
-            listingStandard.Label(SPAWN_INTERVAL.Translate() + FishTrapsModSettings.netSpawnInterval, tooltip: SPAWN_TOOLTIP.Translate());
-            FishTrapsModSettings.netSpawnInterval = (int)listingStandard.Slider(FishTrapsModSettings.netSpawnInterval, 10000f, 60000 * 5f);
-            listingStandard.Label(DMG_INTERVAL.Translate() + FishTrapsModSettings.netDmgInterval, tooltip: DMG_TOOLTIP.Translate());
-            FishTrapsModSettings.netDmgInterval = (int)listingStandard.Slider(FishTrapsModSettings.netDmgInterval, 1000f, 60000f);
+            listingStandard.Label(SPAWN_INTERVAL.Translate(FishTrapsModSettings.netSpawnInterval, FishTrapsModSettings.NetSpawnIntervalInTicks) , tooltip: SPAWN_TOOLTIP.Translate());
+            FishTrapsModSettings.netSpawnInterval = (int)listingStandard.Slider(FishTrapsModSettings.netSpawnInterval, 1f, 24 * 5);
+            listingStandard.Label(DMG_INTERVAL.Translate(FishTrapsModSettings.netDmgInterval, FishTrapsModSettings.NetDmgIntervalInTicks), tooltip: DMG_TOOLTIP.Translate());
+            FishTrapsModSettings.netDmgInterval = (int)listingStandard.Slider(FishTrapsModSettings.netDmgInterval, 1, 24);
 
             if (listingStandard.ButtonText(DEFAULT.Translate()))
             {
-                FishTrapsModSettings.netSpawnInterval = 120000;
-                FishTrapsModSettings.netDmgInterval = 30000;
+                FishTrapsModSettings.netSpawnInterval = 48;
+                FishTrapsModSettings.netDmgInterval = 12;
             };
-            
 
+            listingStandard.Label(BUILD_RADIUS.Translate(FishTrapsModSettings.buildRadius));
+            FishTrapsModSettings.buildRadius = (int)listingStandard.Slider(FishTrapsModSettings.buildRadius, 0, 30);
+            if (listingStandard.ButtonText(DEFAULT.Translate()))
+            {
+                FishTrapsModSettings.buildRadius = 10;
+            };
+
+            listingStandard.CheckboxLabeled(AUTO_REBUILD.Translate(), ref FishTrapsModSettings.autoReplaceAfterDestroyed, AUTO_REBUILD_TOOLTIP.Translate());
 
             listingStandard.End();
         }
 
         public override string SettingsCategory()
         {
-            return "WFFT_ModName".Translate();
+            return MOD_NAME.Translate();
         }
     }
 }

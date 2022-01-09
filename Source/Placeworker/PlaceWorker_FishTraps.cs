@@ -1,6 +1,7 @@
 ﻿using System;
 using Verse;
 using UnityEngine;
+using FishTraps.Options;
 
 namespace FishTraps
 {
@@ -11,10 +12,21 @@ namespace FishTraps
         private const string FISH_TRAP = "WFFT_FishTrap";
         private const string FISH_NET = "WFFT_FishNet";
 
+        private int BuildRadius
+        {
+            get
+            {
+                return FishTrapsModSettings.buildRadius;
+            }
+        }
+
         public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol, Thing thing = null)
         {
-            Color color = new Color(0f, 0.6f, 0f);
-            GenDraw.DrawRadiusRing(center, 10f, color, (Func<IntVec3, bool>)null);
+            if (BuildRadius > 0)
+            {
+                Color color = new Color(0f, 0.6f, 0f);
+                GenDraw.DrawRadiusRing(center, BuildRadius, color, (Func<IntVec3, bool>)null);
+            }
         }
 
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
@@ -26,7 +38,7 @@ namespace FishTraps
                     return new AcceptanceReport(Translator.Translate(NEED_WATER));
                 }
             }
-            foreach (Thing item2 in GenRadial.RadialDistinctThingsAround(loc, map, 10f, true))
+            foreach (Thing item2 in GenRadial.RadialDistinctThingsAround(loc, map, BuildRadius, true))
             {
                 if (item2 is Building val && IsFishTraps(val.def))
                 {
