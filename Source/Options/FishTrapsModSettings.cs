@@ -49,6 +49,7 @@ namespace FishTraps.Options
         public static int buildRadius = 10;
 
         public static bool autoReplaceAfterDestroyed = false;
+        public static bool dmgOvertime = true;
         public override void ExposeData()
         {
             base.ExposeData();
@@ -61,8 +62,9 @@ namespace FishTraps.Options
             Scribe_Values.Look<int>(ref buildRadius, "WFFT_buildRadius", 10, true);
 
             Scribe_Values.Look<bool>(ref autoReplaceAfterDestroyed, "WFFT_AutoDestroyReplace", true, true);
+            Scribe_Values.Look<bool>(ref dmgOvertime, "WFFT_dmgOvertime", true, true);
 
-            if(Scribe.mode == LoadSaveMode.PostLoadInit)
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (trapSpawnInterval > 5 * 24)
                 {

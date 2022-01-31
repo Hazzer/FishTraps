@@ -21,6 +21,8 @@ namespace FishTraps.Options
         private const string AUTO_REBUILD_TOOLTIP = "WFFT_AutoRebuildDesc";
         private const string FISH_NET = "WFFT_FishNet";
         private const string MOD_NAME = "WFFT_ModName";
+        private const string AUTO_DMG = "WFFT_DisableTrapDamageOverTime";
+        private const string AUTO_DMG_TOOLTIP = "WFFT_DisableTrapDamageOverTimeDesc";
 
         public FishTrapsMod(ModContentPack content) : base(content)
         {
@@ -30,7 +32,12 @@ namespace FishTraps.Options
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Listing_Standard listingStandard = new Listing_Standard();
+
+
             listingStandard.Begin(inRect);
+            listingStandard.Gap(12f);
+
+            listingStandard.CheckboxLabeled(AUTO_DMG.Translate(), ref FishTrapsModSettings.dmgOvertime, AUTO_DMG_TOOLTIP.Translate());
             listingStandard.Gap(12f);
 
             listingStandard.Label(FISH_TRAP.Translate());

@@ -196,9 +196,12 @@ namespace FishTraps
 
         private void DoDamage(float threshhold)
         {
-            float trapDamage = Rand.Range(0f, threshhold);
-            float dmgDone = Math.Max(1f, parent.HitPoints * trapDamage);
-            parent.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, dmgDone));
+            if (FishTrapsModSettings.dmgOvertime)
+            {
+                float trapDamage = Rand.Range(0f, threshhold);
+                float dmgDone = Math.Max(1f, parent.HitPoints * trapDamage);
+                parent.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, dmgDone));
+            }
         }
 
         public override void PostDestroy(DestroyMode mode, Map previousMap)
@@ -248,6 +251,32 @@ namespace FishTraps
                 "WFFT_Disabled".Translate() :
                 ("NextSpawnedResourceIn".Translate() + ": " + (SpawnInterval - ticksPassed).ToStringTicksToPeriod());
 
+        }
+
+        public override void Notify_SignalReceived(Signal signal)
+        {
+            if (signal.tag == "WFFT_TerrainChange")
+            {
+                if (this.parent != null && this.parent.Map != null
+                    && signal.args.TryGetArg<TerrainGrid>("grid", out TerrainGrid grid) && grid == this.parent.Map.terrainGrid)
+                {
+                    if (signal.args.TryGetArg<IntVec3>("pos", out IntVec3 pos))
+                    {
+                        IEnumerable<IntVec3> cells = GenAdj.CellsOccupiedBy(parent.Position, parent.Rotation, parent.def.Size);
+                        foreach (IntVec3 cell in cells)
+                        {
+                            if (cell == pos && !parent.Map.terrainGrid.TerrainAt(pos).IsWater)
+                            {
+                                Messages.Message("WFFT_Deconstructed".Translate(parent.def.label.CapitalizeFirst()), MessageTypeDefOf.SilentInput);
+                                parent.Destroy(DestroyMode.Deconstruct);
+                                return;
+                            }
+                        }
+                    }
+
+                }
+
+            }
         }
     }
 }

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Lib.Harmony.2.2.0\lib\net472\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\Gry\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -66,6 +70,7 @@
     <Compile Include="FishGeneratorComp\FishyChecker.cs" />
     <Compile Include="FishGeneratorComp\FishyCompProperties.cs" />
     <Compile Include="FishGeneratorComp\FishyItemSpawnerComp.cs" />
+    <Compile Include="HarmonyPatches\TerrainChangePatch.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Options\FishTrapsMod.cs" />
     <Compile Include="Options\FishTrapsModSettings.cs" />
