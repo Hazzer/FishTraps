@@ -4,6 +4,7 @@
   <author>Hazzer</author>
   <supportedVersions>
     <li>1.3</li>
+    <li>1.4</li>
   </supportedVersions>
   <packageId>warlocksforge.fishtraps</packageId>
   <loadAfter>
@@ -23,6 +24,6 @@
       <steamWorkshopUrl>steam://url/CommunityFilePage/1914064942</steamWorkshopUrl>
     </li>
   </modDependencies>
-  
+
   <description>Add-on for Vanilla Fishing Expanded. Adds production buildings to catch fish over time.</description>
 </ModMetaData>

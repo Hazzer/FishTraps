@@ -17,7 +17,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Assemblies\</OutputPath>
+    <OutputPath>..\1.4\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,8 +59,9 @@
       <HintPath>..\..\..\Gry\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VCE-Fishing">
-      <HintPath>..\..\..\Gry\Steam\steamapps\workshop\content\294100\1914064942\1.2\Assemblies\VCE-Fishing.dll</HintPath>
+    <Reference Include="VCE-Fishing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Gry\Steam\steamapps\workshop\content\294100\1914064942\1.4\Assemblies\VCE-Fishing.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -97,6 +98,8 @@
       <Link>Languages\English\Keyed\Keys.xml</Link>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

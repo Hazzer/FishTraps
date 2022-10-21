@@ -208,9 +208,9 @@ namespace FishTraps
         {
             if (mode == DestroyMode.KillFinalize)
             {
-                if (!this.CanRebuild || previousMap == null || !GenConstruct.CanPlaceBlueprintAt((BuildableDef)parent.def, parent.Position, parent.Rotation, previousMap, false, (Thing)null, (Thing)null, parent.Stuff).Accepted)
+                if (!this.CanRebuild || previousMap == null || !GenConstruct.CanPlaceBlueprintAt(parent.def, parent.Position, parent.Rotation, previousMap, false, null, null, parent.Stuff).Accepted)
                     return;
-                GenConstruct.PlaceBlueprintForBuild_NewTemp((BuildableDef)parent.def, parent.Position, previousMap, parent.Rotation, Faction.OfPlayer, parent.Stuff, (Precept_ThingStyle)null, (ThingStyleDef)null);
+                GenConstruct.PlaceBlueprintForBuild(parent.def, parent.Position, previousMap, parent.Rotation, Faction.OfPlayer, parent.Stuff);
             }
         }
 
