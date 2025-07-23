@@ -1,4 +1,5 @@
-﻿using VCE_Fishing;
+﻿using System;
+using VCE_Fishing;
 
 namespace FishTraps
 {
@@ -15,10 +16,10 @@ namespace FishTraps
                 case FishSizeCategory.Large:
                     return checkedSize != FishSizeCategory.Special;
                 case FishSizeCategory.Special:
+                default:
                     return false;
-
             }
-            return false;
+
         }
 
     }
