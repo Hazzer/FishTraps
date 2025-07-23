@@ -51,7 +51,7 @@ namespace FishTraps.Options
             {
                 FishTrapsModSettings.trapSpawnInterval = 36;
                 FishTrapsModSettings.trapDmgInterval = 12;
-            };
+            }
             listingStandard.Gap(12f);
 
             listingStandard.Label(FISH_NET.Translate());
