@@ -3,6 +3,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FishTraps.Spawner;
 using VCE_Fishing;
 using VCE_Fishing.Options;
 using Verse;
@@ -15,25 +16,9 @@ namespace FishTraps
         private bool disabled;
         private OverlayHandle? overlayHandle;
 
-        private FishyCompProperties Props => (FishyCompProperties)base.props;
+        private FishyCompProperties Props => (FishyCompProperties)props;
 
-        private List<FishDef> fishInThisZone = new List<FishDef>();
-
-        private bool IsOcean
-        {
-            get
-            {
-                foreach (IntVec3 item in GenAdj.CellsOccupiedBy(parent.Position, parent.Rotation, parent.def.Size))
-                {
-                    TerrainDef terrainDef = parent.Map.terrainGrid.TerrainAt(item);
-                    if (terrainDef.defName == "WaterOceanDeep" || terrainDef.defName == "WaterOceanShallow")
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        }
+        private static SpawnerAdapter Spawner => SpawnerSelector.GetAdapter();
 
         private int SpawnInterval
         {
@@ -67,14 +52,9 @@ namespace FishTraps
             }
         }
 
-        private bool CanRebuild
-        {
-            get
-            {
-                return FishTrapsModSettings.autoReplaceAfterDestroyed &&
-                    parent.Faction == Faction.OfPlayer && parent.def.blueprintDef != null && parent.def.IsResearchFinished;
-            }
-        }
+        private bool CanRebuild =>
+            FishTrapsModSettings.autoReplaceAfterDestroyed &&
+            parent.Faction == Faction.OfPlayer && parent.def.blueprintDef != null && parent.def.IsResearchFinished;
 
         private OverlayTypes MyOverlayType
         {
@@ -100,33 +80,10 @@ namespace FishTraps
                 }
             }
         }
-        public FishyItemSpawnerComp() : base()
-        {
-
-        }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            BiomeDef biome = parent.Map.Biome;
-            foreach (FishDef item in from element in DefDatabase<FishDef>.AllDefs
-                                     where FishyChecker.IsGoodSizeOfFish(Props.fishSizeCategory, element.fishSizeCategory)
-                                     select element)
-            {
-                foreach (String biomeName in item.allowedBiomes)
-                {
-                    if (BiomeRepo.CheckBiome(biome, biomeName))
-                    {
-                        if (IsOcean && item.canBeSaltwater)
-                        {
-                            fishInThisZone.Add(item);
-                        }
-                        if (!IsOcean && item.canBeFreshwater)
-                        {
-                            fishInThisZone.Add(item);
-                        }
-                    }
-                }
-            }
+            Spawner.PostSpawnSetup(parent, Props);
             UpdateOverlayHandle();
         }
 
@@ -153,7 +110,7 @@ namespace FishTraps
             {
                 Command_Action command_Action = new Command_Action
                 {
-                    defaultLabel = "DEV: Spawn items",
+                    defaultLabel = $"DEV: Spawn items ({Spawner.GetType().Name})",
                     action = delegate
                     {
                         SpawnItems();
@@ -222,27 +179,7 @@ namespace FishTraps
 
         private void SpawnItems()
         {
-            float specialChance = 1f - (VCE_Fishing_Settings.VCEF_chanceForSpecials / 100.0f);
-            if (Rand.Value <= specialChance)
-            {
-                if (fishInThisZone.TryRandomElement(out FishDef result))
-                {
-                    int stackCount = result.baseFishingYield;
-                    Thing thing = ThingMaker.MakeThing(result.thingDef);
-                    thing.stackCount = stackCount;
-                    GenPlace.TryPlaceThing(thing, parent.Position, parent.Map, ThingPlaceMode.Near);
-                }
-            }
-            else
-            {
-                FishDef thingDef = DefDatabase<FishDef>.AllDefs
-                    .Where<FishDef>(element => element.fishSizeCategory == FishSizeCategory.Special)
-                    .ToList()
-                    .RandomElementByWeight<FishDef>(s => s.commonality);
-                Thing thing = ThingMaker.MakeThing(thingDef.thingDef);
-                thing.stackCount = thingDef.baseFishingYield;
-                GenPlace.TryPlaceThing(thing, parent.Position, parent.Map, ThingPlaceMode.Near);
-            }
+            Spawner.SpawnFish(parent);
         }
 
         public override string CompInspectStringExtra()
@@ -255,27 +192,20 @@ namespace FishTraps
 
         public override void Notify_SignalReceived(Signal signal)
         {
-            if (signal.tag == "WFFT_TerrainChange")
+            if (signal.tag != "WFFT_TerrainChange")
             {
-                if (this.parent != null && this.parent.Map != null
-                    && signal.args.TryGetArg<TerrainGrid>("grid", out TerrainGrid grid) && grid == this.parent.Map.terrainGrid)
+                return;
+            }
+
+            if (parent?.Map != null
+                && signal.args.TryGetArg("grid", out TerrainGrid grid) && grid == parent.Map.terrainGrid && signal.args.TryGetArg("pos", out IntVec3 pos))
+            {
+                IEnumerable<IntVec3> cells = GenAdj.CellsOccupiedBy(parent.Position, parent.Rotation, parent.def.Size);
+                if (cells.Any(cell => cell == pos && !parent.Map.terrainGrid.TerrainAt(pos).IsWater))
                 {
-                    if (signal.args.TryGetArg<IntVec3>("pos", out IntVec3 pos))
-                    {
-                        IEnumerable<IntVec3> cells = GenAdj.CellsOccupiedBy(parent.Position, parent.Rotation, parent.def.Size);
-                        foreach (IntVec3 cell in cells)
-                        {
-                            if (cell == pos && !parent.Map.terrainGrid.TerrainAt(pos).IsWater)
-                            {
-                                Messages.Message("WFFT_Deconstructed".Translate(parent.def.label.CapitalizeFirst()), MessageTypeDefOf.SilentInput);
-                                parent.Destroy(DestroyMode.Deconstruct);
-                                return;
-                            }
-                        }
-                    }
-
+                    Messages.Message("WFFT_Deconstructed".Translate(parent.def.label.CapitalizeFirst()), MessageTypeDefOf.SilentInput);
+                    parent.Destroy(DestroyMode.Deconstruct);
                 }
-
             }
         }
     }

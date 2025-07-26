@@ -17,7 +17,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\1.5\Assemblies\</OutputPath>
+    <OutputPath>..\1.6\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -66,9 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FishGeneratorComp\BiomeRepo.cs" />
     <Compile Include="FishGeneratorComp\FishyBuildings.cs" />
-    <Compile Include="FishGeneratorComp\FishyChecker.cs" />
     <Compile Include="FishGeneratorComp\FishyCompProperties.cs" />
     <Compile Include="FishGeneratorComp\FishyItemSpawnerComp.cs" />
     <Compile Include="HarmonyPatches\TerrainChangePatch.cs" />
@@ -77,6 +75,8 @@
     <Compile Include="Options\FishTrapsModSettings.cs" />
     <Compile Include="Placeworker\PlaceWorker_FishTraps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spawner\SpawnerAdapter.cs" />
+    <Compile Include="Spawner\SpawnerSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\MakeRelease.bat">
@@ -88,10 +88,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Defs\BuildingDefs_Traps.xml">
+    <Content Include="..\1.6\Defs\BuildingDefs_Traps.xml">
       <Link>Defs\BuildingDefs_Traps.xml</Link>
     </Content>
-    <Content Include="..\Defs\Resarch.xml">
+    <Content Include="..\1.6\Defs\Resarch.xml">
       <Link>Defs\Resarch.xml</Link>
     </Content>
     <Content Include="..\Languages\English\Keyed\Keys.xml">

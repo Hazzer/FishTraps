@@ -6,6 +6,7 @@
     <li>1.3</li>
     <li>1.4</li>
     <li>1.5</li>
+    <li>1.6</li>
   </supportedVersions>
   <packageId>warlocksforge.fishtraps</packageId>
   <loadAfter>
@@ -18,11 +19,6 @@
       <displayName>Harmony</displayName>
       <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
       <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
-    </li>
-    <li>
-      <packageId>VanillaExpanded.VCEF</packageId>
-      <displayName>Vanilla Fishing Expanded</displayName>
-      <steamWorkshopUrl>steam://url/CommunityFilePage/1914064942</steamWorkshopUrl>
     </li>
   </modDependencies>
   <description>Add-on for Vanilla Fishing Expanded. Adds production buildings to catch fish over time.</description>

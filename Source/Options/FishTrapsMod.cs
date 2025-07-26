@@ -23,6 +23,8 @@ namespace FishTraps.Options
         private const string MOD_NAME = "WFFT_ModName";
         private const string AUTO_DMG = "WFFT_DisableTrapDamageOverTime";
         private const string AUTO_DMG_TOOLTIP = "WFFT_DisableTrapDamageOverTimeDesc";
+        private const string NOTIFY_WATER_BODIES  = "WFFT_NotifyWaterBodies";
+        private const string NOTIFY_WATER_BODIES_DESC  = "WFFT_NotifyWaterBodiesDesc";
 
         public FishTrapsMod(ModContentPack content) : base(content)
         {
@@ -39,6 +41,12 @@ namespace FishTraps.Options
 
             listingStandard.CheckboxLabeled(AUTO_DMG.Translate(), ref FishTrapsModSettings.dmgOvertime, AUTO_DMG_TOOLTIP.Translate());
             listingStandard.Gap(12f);
+            
+            if (ModsConfig.OdysseyActive)
+            {
+                listingStandard.CheckboxLabeled(NOTIFY_WATER_BODIES.Translate(), ref FishTrapsModSettings.odysseyNotifyWaterBodies, NOTIFY_WATER_BODIES_DESC.Translate());
+                listingStandard.Gap(12f);
+            }
 
             listingStandard.Label(FISH_TRAP.Translate());
             listingStandard.Gap(12f);
@@ -65,14 +73,14 @@ namespace FishTraps.Options
             {
                 FishTrapsModSettings.netSpawnInterval = 48;
                 FishTrapsModSettings.netDmgInterval = 12;
-            };
+            }
 
             listingStandard.Label(BUILD_RADIUS.Translate(FishTrapsModSettings.buildRadius));
             FishTrapsModSettings.buildRadius = (int)listingStandard.Slider(FishTrapsModSettings.buildRadius, 0, 30);
             if (listingStandard.ButtonText(DEFAULT.Translate()))
             {
                 FishTrapsModSettings.buildRadius = 10;
-            };
+            }
 
             listingStandard.CheckboxLabeled(AUTO_REBUILD.Translate(), ref FishTrapsModSettings.autoReplaceAfterDestroyed, AUTO_REBUILD_TOOLTIP.Translate());
 

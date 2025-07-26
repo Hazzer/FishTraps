@@ -1,5 +1,4 @@
-﻿using VCE_Fishing;
-using Verse;
+﻿using Verse;
 
 namespace FishTraps
 {
@@ -7,7 +6,6 @@ namespace FishTraps
     {
 
         public int spawnInterval = 30000;
-        public FishSizeCategory fishSizeCategory;
         public FishyBuildings buildingType;
         public int dmgInterval = 10;
         public float intervalDmgTreshhold = 0.5f;
