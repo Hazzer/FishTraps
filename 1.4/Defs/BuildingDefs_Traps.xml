@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingDef Name="WFFT_BaseBuilding" Abstract="True">
+        <category>Building</category>
+        <thingClass>Building</thingClass>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+        <selectable>true</selectable>
+        <drawerType>MapMeshAndRealTime</drawerType>
+
+        <repairEffect>Repair</repairEffect>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <filthLeaving>Filth_RubbleBuilding</filthLeaving>
+        <statBases>
+            <SellPriceFactor>0.70</SellPriceFactor>
+        </statBases>
+        <receivesSignals>true</receivesSignals>
+        <fillPercent>0.15</fillPercent>        
+    </ThingDef>
+
+    <ThingDef ParentName="WFFT_BaseBuilding">
+        <defName>WFFT_FishTrap</defName>
+        <label>fish trap</label>
+        <description>Passively catch small fishes. Must be placed on water.</description>
+        <thingClass>Building</thingClass>
+        <graphicData>
+            <texPath>fishTrap</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
+            <drawSize>(1,1)</drawSize>
+            <damageData>
+                <enabled>false</enabled>
+            </damageData>
+        </graphicData>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>PassThroughOnly</passability>
+        <blockWind>false</blockWind>
+        <scatterableOnMapGen>false</scatterableOnMapGen>
+        <fillPercent>1</fillPercent>
+        <blockLight>false</blockLight>
+        <canOverlapZones>false</canOverlapZones>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <WorkToBuild>1000</WorkToBuild>
+            <Flammability>1.0</Flammability>
+            <Beauty>-1</Beauty>
+            <Mass>10</Mass>
+            <MarketValue>60</MarketValue>
+        </statBases>
+        <tickerType>Rare</tickerType>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsProduction</li>
+        </thingCategories>
+        <size>(1,1)</size>
+        <pathCost>30</pathCost>
+        <stuffCategories>
+            <li>Woody</li>
+        </stuffCategories>
+        <costStuffCount>60</costStuffCount>
+        <comps>
+            <li Class="FishTraps.FishyCompProperties">
+                <compClass>FishTraps.FishyItemSpawnerComp</compClass>
+                <fishSizeCategory>Small</fishSizeCategory>
+                <buildingType>Trap</buildingType>
+            </li>
+        </comps>
+        <rotatable>false</rotatable>
+        <placeWorkers>
+            <li>FishTraps.PlaceWorker_FishTraps</li>
+        </placeWorkers>
+
+        <designationCategory>Production</designationCategory>
+        <building>
+            <destroySound>BuildingDestroyed_Soft_Small</destroySound>
+        </building>
+        <researchPrerequisites>
+            <li>WFFT_FishTrap</li>
+        </researchPrerequisites>
+        <constructionSkillPrerequisite>3</constructionSkillPrerequisite>
+    </ThingDef>
+
+    <ThingDef ParentName="WFFT_BaseBuilding">
+        <defName>WFFT_FishNet</defName>
+        <label>fish net</label>
+        <description>Passively catch all kinds of fish. Must be placed on water.</description>
+        <thingClass>Building</thingClass>
+        <graphicData>
+            <texPath>fishNet</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
+            <drawSize>(3,3)</drawSize>
+            <damageData>
+                <enabled>false</enabled>
+            </damageData>
+        </graphicData>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>PassThroughOnly</passability>
+        <blockWind>false</blockWind>
+        <scatterableOnMapGen>false</scatterableOnMapGen>
+        <fillPercent>1</fillPercent>
+        <blockLight>false</blockLight>
+        <canOverlapZones>false</canOverlapZones>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <WorkToBuild>2000</WorkToBuild>
+            <Flammability>1.0</Flammability>
+            <Beauty>-1</Beauty>
+            <Mass>10</Mass>
+            <MarketValue>100</MarketValue>
+        </statBases>
+        <tickerType>Rare</tickerType>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsProduction</li>
+        </thingCategories>
+        <size>(3,3)</size>
+        <pathCost>30</pathCost>
+        <stuffCategories>
+            <li>Fabric</li>
+            <li>Leathery</li>
+        </stuffCategories>
+        <costStuffCount>60</costStuffCount>
+        <costList>
+            <WoodLog>40</WoodLog>
+        </costList>
+        <comps>
+            <li Class="FishTraps.FishyCompProperties">
+                <compClass>FishTraps.FishyItemSpawnerComp</compClass>
+                <fishSizeCategory>Large</fishSizeCategory>
+                <buildingType>Net</buildingType>
+            </li>
+        </comps>
+        <rotatable>false</rotatable>
+        <placeWorkers>
+            <li>FishTraps.PlaceWorker_FishTraps</li>
+        </placeWorkers>
+        <designationCategory>Production</designationCategory>
+        <building>
+            <destroySound>BuildingDestroyed_Soft_Small</destroySound>
+        </building>
+        <researchPrerequisites>
+            <li>WFFT_FishNet</li>
+        </researchPrerequisites>
+        <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    </ThingDef>
+</Defs>

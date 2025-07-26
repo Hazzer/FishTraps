@@ -1,10 +1,10 @@
-﻿using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RimWorld;
 using VCE_Fishing;
 using Verse;
 
-namespace FishTraps
+namespace Vfe
 {
     class BiomeRepo
     {

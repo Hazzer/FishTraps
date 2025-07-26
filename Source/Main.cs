@@ -1,30 +1,32 @@
-﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using HarmonyLib;
 using Verse;
 
 namespace FishTraps
 {
-    [StaticConstructorOnStartup]
-    public static class Main
+  [StaticConstructorOnStartup]
+  public static class Main
+  {
+    static Main()
     {
-        static Main()
-        {
-            var harmony = new Harmony("Harmony_FishTraps");
-            try
-            {
-                harmony.PatchAll(Assembly.GetExecutingAssembly());
-                BiomeRepo.Init();
+      if (LoadedModManager.RunningMods.FirstOrDefault(m => m.PackageId == "vanillaexpanded.vcef") == null &&
+          !ModsConfig.OdysseyActive)
+      {
+        Log.Error("Mod require DLC Odyssey or Vanilla Fishing Expanded");
+        return;
+      }
 
-            }
-            catch (Exception e)
-            {
-                Log.Error($"Exception during init: {e}");
-            }
-        }
+      var harmony = new Harmony("Harmony_FishTraps");
+      try
+      {
+        harmony.PatchAll(Assembly.GetExecutingAssembly());
+      }
+      catch (Exception e)
+      {
+        Log.Error($"Exception during init: {e}");
+      }
     }
+  }
 }

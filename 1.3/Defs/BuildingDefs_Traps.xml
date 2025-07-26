@@ -15,6 +15,7 @@
             <SellPriceFactor>0.70</SellPriceFactor>
         </statBases>
         <receivesSignals>true</receivesSignals>
+        <fillPercent>0.15</fillPercent>        
     </ThingDef>
 
     <ThingDef ParentName="WFFT_BaseBuilding">

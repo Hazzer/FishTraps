@@ -12,13 +12,7 @@ namespace FishTraps
         private const string FISH_TRAP = "WFFT_FishTrap";
         private const string FISH_NET = "WFFT_FishNet";
 
-        private int BuildRadius
-        {
-            get
-            {
-                return FishTrapsModSettings.buildRadius;
-            }
-        }
+        private static int BuildRadius => FishTrapsModSettings.buildRadius;
 
         public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol, Thing thing = null)
         {
@@ -53,7 +47,7 @@ namespace FishTraps
             return true;
         }
 
-        private bool IsFishTraps(Def def)
+        private static bool IsFishTraps(Def def)
         {
             return def.defName == FISH_TRAP || def.defName == FISH_NET;
         }

@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishTrap", "FishTrap.csproj", "{C1B4A471-8B47-4986-ADC2-91996CA64AEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vfe", "Vfe\Vfe.csproj", "{67EF4894-F82F-4A18-9C88-2CFA932C5DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odyssey", "Odyssey\Odyssey.csproj", "{9F6E6410-F7EE-4674-BF57-9A6C1C07583C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C1B4A471-8B47-4986-ADC2-91996CA64AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1B4A471-8B47-4986-ADC2-91996CA64AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1B4A471-8B47-4986-ADC2-91996CA64AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67EF4894-F82F-4A18-9C88-2CFA932C5DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67EF4894-F82F-4A18-9C88-2CFA932C5DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67EF4894-F82F-4A18-9C88-2CFA932C5DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67EF4894-F82F-4A18-9C88-2CFA932C5DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F6E6410-F7EE-4674-BF57-9A6C1C07583C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F6E6410-F7EE-4674-BF57-9A6C1C07583C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F6E6410-F7EE-4674-BF57-9A6C1C07583C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F6E6410-F7EE-4674-BF57-9A6C1C07583C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

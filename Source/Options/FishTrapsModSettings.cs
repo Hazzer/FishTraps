@@ -12,44 +12,22 @@ namespace FishTraps.Options
         public static readonly int ONE_HOUR = 2500;
 
         public static int trapSpawnInterval = 36;
-        public static int TrapSpawnIntervalInTicks
-        {
-            get
-            {
-                return trapSpawnInterval * ONE_HOUR;
-            }
-        }
+        public static int TrapSpawnIntervalInTicks => trapSpawnInterval * ONE_HOUR;
 
         public static int trapDmgInterval = 12;
-        public static int TrapDmgIntervalInTicks
-        {
-            get
-            {
-                return trapDmgInterval * ONE_HOUR;
-            }
-        }
+        public static int TrapDmgIntervalInTicks => trapDmgInterval * ONE_HOUR;
 
         public static int netSpawnInterval = 48;
-        public static int NetSpawnIntervalInTicks
-        {
-            get
-            {
-                return netSpawnInterval * ONE_HOUR;
-            }
-        }
+        public static int NetSpawnIntervalInTicks => netSpawnInterval * ONE_HOUR;
 
         public static int netDmgInterval = 12;
-        public static int NetDmgIntervalInTicks
-        {
-            get
-            {
-                return netDmgInterval * ONE_HOUR;
-            }
-        }
+        public static int NetDmgIntervalInTicks => netDmgInterval * ONE_HOUR;
         public static int buildRadius = 10;
 
         public static bool autoReplaceAfterDestroyed = false;
         public static bool dmgOvertime = true;
+        
+        public static bool odysseyNotifyWaterBodies = true;
         public override void ExposeData()
         {
             base.ExposeData();
@@ -63,6 +41,8 @@ namespace FishTraps.Options
 
             Scribe_Values.Look<bool>(ref autoReplaceAfterDestroyed, "WFFT_AutoDestroyReplace", true, true);
             Scribe_Values.Look<bool>(ref dmgOvertime, "WFFT_dmgOvertime", true, true);
+            
+            Scribe_Values.Look<bool>(ref odysseyNotifyWaterBodies, "WFFT_odysseyNotifyWaterBodies", true, true);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

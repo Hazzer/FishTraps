@@ -22,4 +22,7 @@
     <WFFT_AllowSpawn>Catch fish</WFFT_AllowSpawn>
     <WFFT_AllowSpawnDesc>When disabled trap will not spawn fish or receving damage over time</WFFT_AllowSpawnDesc>
     <WFFT_Disabled>Disabled</WFFT_Disabled>
+    
+    <WFFT_NotifyWaterBodies>Traps reduces water bodies fish count</WFFT_NotifyWaterBodies>
+    <WFFT_NotifyWaterBodiesDesc>When enabled water bodies will be notified about fish catch, which will reduce their population</WFFT_NotifyWaterBodiesDesc>
 </LanguageData>
