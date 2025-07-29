@@ -24,18 +24,17 @@ namespace Vfe
     public void PostSpawnSetup(Thing parent, FishyCompProperties fishyCompProps)
     {
       BiomeDef biome = parent.Map.Biome;
-      foreach (FishDef item in from element in DefDatabase<FishDef>.AllDefs
-               where IsGoodSizeOfFish(fishyCompProps.buildingType, element.fishSizeCategory)
-               select element)
+      var isOcean = IsOcean(parent);
+      foreach(var item in DefDatabase<FishDef>.AllDefs.Where(def => IsGoodSizeOfFish(fishyCompProps.buildingType, def.fishSizeCategory)))
       {
         foreach (var _ in item.allowedBiomes.Where(biomeName => BiomeRepo.CheckBiome(biome, biomeName)))
         {
-          if (IsOcean(parent) && item.canBeSaltwater)
+          if (isOcean && item.canBeSaltwater)
           {
             _fishInThisZone.Add(item);
           }
 
-          if (!IsOcean(parent) && item.canBeFreshwater)
+          if (!isOcean && item.canBeFreshwater)
           {
             _fishInThisZone.Add(item);
           }

@@ -7,6 +7,7 @@ using FishTraps.Spawner;
 using VCE_Fishing;
 using VCE_Fishing.Options;
 using Verse;
+using Verse.Sound;
 
 namespace FishTraps
 {
@@ -18,7 +19,7 @@ namespace FishTraps
 
         private FishyCompProperties Props => (FishyCompProperties)props;
 
-        private static SpawnerAdapter Spawner => SpawnerSelector.GetAdapter();
+        private static readonly SpawnerAdapter Spawner = SpawnerSelector.GetAdapter();
 
         private int SpawnInterval
         {
@@ -89,7 +90,7 @@ namespace FishTraps
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            Command_Toggle forbidToggle = new Command_Toggle
+            yield return new Command_Toggle
             {
                 defaultLabel = "WFFT_AllowSpawn".Translate(),
                 defaultDesc = "WFFT_AllowSpawnDesc".Translate(),
@@ -103,32 +104,33 @@ namespace FishTraps
                     {
                         ticksPassed = 0;
                     }
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
                 }
             };
-            yield return forbidToggle;
-            if (Prefs.DevMode)
+            if (!Prefs.DevMode)
             {
-                Command_Action command_Action = new Command_Action
-                {
-                    defaultLabel = $"DEV: Spawn items ({Spawner.GetType().Name})",
-                    action = delegate
-                    {
-                        SpawnItems();
-                    }
-                };
-                yield return command_Action;
-
-                Command_Action damageTrap = new Command_Action
-                {
-                    defaultLabel = "DEV: damage trap",
-                    action = delegate
-                    {
-                        DoDamage(Props.intervalDmgTreshhold);
-                    }
-                };
-                yield return damageTrap;
-
+                yield break;
             }
+
+            yield return new Command_Action
+            {
+                defaultLabel = $"DEV: Spawn items ({Spawner.GetType().Name})",
+                action = delegate
+                {
+                    SpawnItems();
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                }
+            };
+
+            yield return new Command_Action
+            {
+                defaultLabel = "DEV: damage trap",
+                action = delegate
+                {
+                    DoDamage(Props.intervalDmgTreshhold);
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                }
+            };
         }
 
         public override void CompTickRare()

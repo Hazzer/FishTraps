@@ -63,7 +63,7 @@
         </Reference>
         <Reference Include="VCE-Fishing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
             <SpecificVersion>False</SpecificVersion>
-            <HintPath>..\..\..\..\..\Games\Steam\steamapps\workshop\content\294100\1914064942\1.5\Assemblies\VCE-Fishing.dll</HintPath>
+            <HintPath>..\..\..\..\..\Games\Steam\steamapps\workshop\content\294100\1914064942\1.6NotOdyssey\Assemblies\VCE-Fishing.dll</HintPath>
             <Private>False</Private>
         </Reference>
     </ItemGroup>
