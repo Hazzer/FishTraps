@@ -19,14 +19,9 @@ namespace Vfe
 
         }
 
-        public static bool CheckBiome(BiomeDef mapBiome, String fishBiome)
+        public static bool CheckBiome(BiomeDef mapBiome, string fishBiome)
         {
-            if (biomesMap.TryGetValue(fishBiome, out List<String> biomes))
-            {
-                return biomes.Contains(mapBiome.defName);
-            }
-            return false;
-
+            return biomesMap.TryGetValue(fishBiome, out List<string> biomes) && biomes.Contains(mapBiome.defName);
         }
     }
 }
