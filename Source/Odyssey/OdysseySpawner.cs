@@ -82,7 +82,7 @@ namespace Odyssey
 
     private static float FishAmount(FishyBuildings fishyBuildings)
     {
-      return fishyBuildings == FishyBuildings.Net ? 1.2f : 0.6f;
+      return fishyBuildings == FishyBuildings.Net ? FishTrapsModSettings.OdysseyNetCatchMultiplier : FishTrapsModSettings.OdysseyTrapCatchMultiplier;
     }
   }
 }

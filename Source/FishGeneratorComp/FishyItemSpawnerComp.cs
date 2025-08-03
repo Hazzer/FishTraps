@@ -19,7 +19,7 @@ namespace FishTraps
 
         private FishyCompProperties Props => (FishyCompProperties)props;
 
-        private static readonly SpawnerAdapter Spawner = SpawnerSelector.GetAdapter();
+        private readonly SpawnerAdapter _spawner = SpawnerSelector.GetAdapter();
 
         private int SpawnInterval
         {
@@ -84,7 +84,7 @@ namespace FishTraps
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            Spawner.PostSpawnSetup(parent, Props);
+            _spawner.PostSpawnSetup(parent, Props);
             UpdateOverlayHandle();
         }
 
@@ -114,7 +114,7 @@ namespace FishTraps
 
             yield return new Command_Action
             {
-                defaultLabel = $"DEV: Spawn items ({Spawner.GetType().Name})",
+                defaultLabel = $"DEV: Spawn items ({_spawner.GetType().Name})",
                 action = delegate
                 {
                     SpawnItems();
@@ -181,7 +181,7 @@ namespace FishTraps
 
         private void SpawnItems()
         {
-            Spawner.SpawnFish(parent);
+            _spawner.SpawnFish(parent);
         }
 
         public override string CompInspectStringExtra()

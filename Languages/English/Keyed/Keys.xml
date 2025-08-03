@@ -25,4 +25,10 @@
     
     <WFFT_NotifyWaterBodies>Traps reduces water bodies fish count</WFFT_NotifyWaterBodies>
     <WFFT_NotifyWaterBodiesDesc>When enabled water bodies will be notified about fish catch, which will reduce their population</WFFT_NotifyWaterBodiesDesc>
+    
+    <WFFT_FishTrapMultiply>Fishing yield for traps: x{0}</WFFT_FishTrapMultiply>
+    <WFFT_FishTrapMultiplyDesc>Caught fish by trap will be multiplied by this value</WFFT_FishTrapMultiplyDesc>
+
+    <WFFT_FishNetMultiply>Fishing yield for net: x{0}</WFFT_FishNetMultiply>
+    <WFFT_FishNetMultiplyDesc>Caught fish by net will be multiplied by this value</WFFT_FishNetMultiplyDesc>
 </LanguageData>
