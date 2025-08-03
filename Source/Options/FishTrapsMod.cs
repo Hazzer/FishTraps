@@ -25,6 +25,10 @@ namespace FishTraps.Options
     private const string AUTO_DMG_TOOLTIP = "WFFT_DisableTrapDamageOverTimeDesc";
     private const string NOTIFY_WATER_BODIES = "WFFT_NotifyWaterBodies";
     private const string NOTIFY_WATER_BODIES_DESC = "WFFT_NotifyWaterBodiesDesc";
+    private const string WfftFishnetmultiply = "WFFT_FishNetMultiply";
+    private const string WfftFishnetmultiplydesc = "WFFT_FishNetMultiplyDesc";
+    private const string WfftFishtrapmultiply = "WFFT_FishTrapMultiply";
+    private const string WfftFishtrapmultiplydesc = "WFFT_FishTrapMultiplyDesc";
 
     public FishTrapsMod(ModContentPack content) : base(content)
     {
@@ -63,8 +67,8 @@ namespace FishTraps.Options
       FishTrapsModSettings.trapDmgInterval = (int)listingStandard.Slider(FishTrapsModSettings.trapDmgInterval, 1, 24);
       if (ModsConfig.OdysseyActive)
       {
-        listingStandard.Label("WFFT_FishTrapMultiply".Translate(FishTrapsModSettings.OdysseyTrapCatchMultiplier.ToString("F1")),
-          tooltip: "WFFT_FishTrapMultiplyDesc".Translate());
+        listingStandard.Label(WfftFishtrapmultiply.Translate(FishTrapsModSettings.OdysseyTrapCatchMultiplier.ToString("F1")),
+          tooltip: WfftFishtrapmultiplydesc.Translate());
         FishTrapsModSettings.odysseyTrapCatchMultuplyValue =
           (int)listingStandard.Slider(FishTrapsModSettings.odysseyTrapCatchMultuplyValue, 1, 100);
       }
@@ -91,8 +95,8 @@ namespace FishTraps.Options
       FishTrapsModSettings.netDmgInterval = (int)listingStandard.Slider(FishTrapsModSettings.netDmgInterval, 1, 24);
       if (ModsConfig.OdysseyActive)
       {
-        listingStandard.Label("WFFT_FishNetMultiply".Translate( FishTrapsModSettings.OdysseyNetCatchMultiplier.ToString("F1")),
-          tooltip: "WFFT_FishNetMultiplyDesc".Translate());
+        listingStandard.Label(WfftFishnetmultiply.Translate( FishTrapsModSettings.OdysseyNetCatchMultiplier.ToString("F1")),
+          tooltip: WfftFishnetmultiplydesc.Translate());
         FishTrapsModSettings.odysseyNetCatchMultuplyValue =
           (int)listingStandard.Slider(FishTrapsModSettings.odysseyNetCatchMultuplyValue, 1, 100);
       }
