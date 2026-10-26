@@ -18,4 +18,10 @@
         <li IfModActive="Ludeon.RimWorld.Odyssey">Odyssey</li>
         <li IfModNotActive="Ludeon.RimWorld.Odyssey">Vfe</li>
     </v1.6>
+    <v1.7>
+        <li>/</li>
+        <li>1.6</li>
+        <li IfModActive="Ludeon.RimWorld.Odyssey">Odyssey</li>
+        <li IfModNotActive="Ludeon.RimWorld.Odyssey">Vfe</li>
+    </v1.7>
 </LoadFolders>
